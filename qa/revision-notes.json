@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-29",
+  "changedRows": [
+    0,
+    4
+  ],
+  "hoverSlot": "jumping",
+  "hoverArtwork": "grounded salute",
+  "gravityColors": [
+    "#DAA000",
+    "#000DAA"
+  ],
+  "exception": "User explicitly replaces jump with salute and requests detached vertical gravity lines. Quality gate uses minimum-jump-lift=0; this is not a jump-animation pass.",
+  "lookDirections": "Existing 16 directions retained; prior direction semantics reused, continuity rechecked.",
+  "chroma": "Native transparent generation; strength=0 avoids desaturating intentional blue/ochre lines.",
+  "generation": "Built-in image_gen, referenced current pet atlas and approved uniform reference. Effects refined twice for finer softer more numerous vertical lines."
+}

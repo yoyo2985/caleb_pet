@@ -16,15 +16,22 @@ def main():
     for state,spec in meta['states'].items():
         frames[state]=[ImageTk.PhotoImage(atlas.crop((i*192,spec['row']*208,(i+1)*192,(spec['row']+1)*208)).resize((384,416),Image.Resampling.LANCZOS)) for i in range(spec['frames'])]
     current=['idle',0]; offset=[0,0];menu=tk.Menu(root,tearoff=False)
-    def select(name):current[:]=[name,0]
-    for name in frames:menu.add_command(label=name,command=lambda n=name:select(n))
+    playing_once=[False];dragging=[False]
+    def select(name):current[:]=[name,0];playing_once[0]=False
+    for name in frames:menu.add_command(label='敬礼 / Salute' if name=='jumping' else name,command=lambda n=name:select(n))
     menu.add_separator();menu.add_command(label='退出 / Quit',command=root.destroy)
-    def begin(e):offset[:]=[e.x,e.y]
+    def begin(e):offset[:]=[e.x,e.y];dragging[0]=True
     def move(e):root.geometry(f'+{max(0,e.x_root-offset[0])}+{max(0,e.y_root-offset[1])}')
     label.bind('<Button-1>',begin);label.bind('<B1-Motion>',move)
+    label.bind('<ButtonRelease-1>',lambda e:dragging.__setitem__(0,False))
+    def salute(e):
+        if not dragging[0]:current[:]=['jumping',0];playing_once[0]=True
+    label.bind('<Enter>',salute)
     label.bind('<Button-3>',lambda e:menu.tk_popup(e.x_root,e.y_root));root.bind('<Escape>',lambda e:root.destroy())
     def tick():
         state,index=current;label.configure(image=frames[state][index]);delay=meta['states'][state]['durations'][index]
-        current[1]=(index+1)%len(frames[state]);root.after(delay,tick)
+        current[1]=(index+1)%len(frames[state])
+        if current[1]==0 and playing_once[0]:current[:]=['idle',0];playing_once[0]=False
+        root.after(delay,tick)
     tick();root.mainloop()
 if __name__=='__main__':main()

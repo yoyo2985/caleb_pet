@@ -38,7 +38,7 @@ python scripts/check_assets.py
 python scripts/check_assets.py --export exported-frames
 ```
 
-前九行依次是 idle、running-right、running-left、waving、jumping、failed、waiting、running（思考）、review；帧数为 6、8、8、4、5、8、6、6、6。最后两行是 16 个顺时针视线方向，从正上方开始。共有 73 个有效帧、15 个透明空格。部分邻近视线方向变化较细微。
+前九行依次是 idle、running-right、running-left、waving、jumping（槽位保留，画面改为敬礼）、failed、waiting、running（思考）、review；帧数为 6、8、8、4、5、8、6、6、6。最后两行是 16 个顺时针视线方向，从正上方开始。共有 73 个有效帧、15 个透明空格。部分邻近视线方向变化较细微。
 
 ## 制作与 ChatGPT Pets
 
@@ -49,3 +49,14 @@ python scripts/check_assets.py --export exported-frames
 ## 授权与归属
 
 项目新编写的播放器和工具代码采用 MIT 许可，见 LICENSE。夏以昼及《恋与深空》相关角色设计属于原权利人；本项目为非官方同人作品。MIT 许可不授予原角色或其设计的权利，素材不应被当作官方资源或商业授权。
+
+
+## 2026-10-29 更新：待机与敬礼
+
+待机改为呼吸、眨眼、轻微左右看与重心变化。角色两侧增加较多细短竖线，以 #DAA000 和 #000DAA 为目标色，柔化边缘并上下错落，表现重力感。
+
+原 `jumping` 槽位现在是五帧原地敬礼：抬手、敬礼停顿、放下，脚底不离地。保留槽位名称以兼容 ChatGPT Pets 格式。浏览器版和桌面版鼠标进入角色区域时播放一次敬礼，然后回到待机；拖动过程中不重新触发。GPT 内的触发时机、时长和后续状态由宿主决定，更新素材不修改宿主逻辑。没有增加自动踱步。
+
+GPT 和本仓库使用同一份成品精灵图。`manifest.json` 的时长供本地播放器使用，不会传入 GPT。成品预览见 [待机—敬礼—待机](previews/idle-salute-idle.gif)。检查记录在 `qa/`；跳跃离地检查按用户要求设为零，完整说明见 `qa/revision-notes.json`。
+
+如已克隆，执行 `git pull` 更新。可运行 `node --test scripts/test_player.cjs` 验证悬停敬礼一次后返回待机，以及拖动不重新触发。

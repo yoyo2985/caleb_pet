@@ -1,0 +1,21 @@
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const path=require('node:path');
+test('hover plays a grounded salute once then returns to idle; dragging does not retrigger',()=>{
+ const root=path.resolve(__dirname,'..');const m=JSON.parse(fs.readFileSync(path.join(root,'manifest.json'),'utf8'));
+ let callback,loaded;const draws=[];
+ const ctx={clearRect(){},drawImage(...args){draws.push(args);assert(args[1]>=0&&args[1]+192<=1536);assert(args[2]>=0&&args[2]+208<=2288);}};
+ const select={value:'idle',append(){}};
+ const canvas={style:{},getContext:()=>ctx,getBoundingClientRect:()=>({left:0,top:0,width:384,height:416}),setPointerCapture(){}};
+ const button={setAttribute(){}};const status={};
+ const elements={pet:canvas,state:select,gaze:button,status,stage:canvas};
+ const sandbox={window:{PET_MANIFEST:m,addEventListener(){}},document:{getElementById:id=>elements[id],createElement:()=>({})},Image:class{set onload(fn){loaded=fn;}},requestAnimationFrame(fn){callback=fn;}};
+ vm.runInNewContext(fs.readFileSync(path.join(root,'player.js'),'utf8'),sandbox);loaded();
+ canvas.onpointerenter();assert.equal(select.value,'jumping');
+ for(let now=0;now<4000;now+=100)callback(now);
+ assert(draws.some(args=>args[2]===4*208));assert.equal(select.value,'idle');
+ canvas.onpointerdown({clientX:20,clientY:20,pointerId:1});canvas.onpointerenter();assert.equal(select.value,'idle');
+ canvas.onpointerup();canvas.onpointerenter();assert.equal(select.value,'jumping');
+});

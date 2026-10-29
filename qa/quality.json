@@ -1,0 +1,71 @@
+{
+  "ok": true,
+  "atlas": "project\\spritesheet.png",
+  "encoded_bytes": 1589262,
+  "sha256": "faaf79e9d1fe869e5df86c8e874f94249591773cfd6c897d7111f281c1e926d8",
+  "jump": {
+    "idle_baseline": 201,
+    "jump_baselines": [
+      201,
+      201,
+      201,
+      201,
+      201
+    ],
+    "airborne_lift_pixels": 0,
+    "landing_delta_pixels": 0
+  },
+  "look_registration": {
+    "neutral_center_x": 96.0,
+    "look_centers_x": [
+      96.0,
+      96.0,
+      96.0,
+      96.0,
+      96.5,
+      96.0,
+      96.0,
+      96.0,
+      96.0,
+      96.0,
+      96.0,
+      96.0,
+      96.0,
+      96.0,
+      96.0,
+      96.5
+    ],
+    "look_widths": [
+      56,
+      56,
+      56,
+      56,
+      55,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      57
+    ],
+    "maximum_center_drift_pixels": 0.5,
+    "maximum_width_ratio": 1.0363636363636364
+  },
+  "errors": [],
+  "warnings": [
+    "look direction 022.5 accepted with a reviewed warning",
+    "look direction 045 accepted with a reviewed warning",
+    "look direction 067.5 accepted with a reviewed warning",
+    "look direction 112.5 accepted with a reviewed warning",
+    "look direction 157.5 accepted with a reviewed warning",
+    "look direction 202.5 accepted with a reviewed warning",
+    "look direction 225 accepted with a reviewed warning",
+    "look direction 247.5 accepted with a reviewed warning",
+    "look direction 337.5 accepted with a reviewed warning"
+  ]
+}

@@ -6,18 +6,18 @@
   "rows": 11,
   "cellWidth": 192,
   "cellHeight": 208,
-  "sha256": "10f92dbaba2298bce9da7f02a7e6d4893b1b93b073d840dc8d42216a43f6cb60",
+  "sha256": "faaf79e9d1fe869e5df86c8e874f94249591773cfd6c897d7111f281c1e926d8",
   "states": {
     "idle": {
       "row": 0,
       "frames": 6,
       "durations": [
-        280,
-        110,
-        110,
-        140,
-        140,
-        320
+        500,
+        300,
+        160,
+        400,
+        400,
+        500
       ]
     },
     "running-right": {
@@ -62,12 +62,14 @@
       "row": 4,
       "frames": 5,
       "durations": [
-        140,
-        140,
-        140,
-        140,
-        280
-      ]
+        180,
+        180,
+        500,
+        400,
+        220
+      ],
+      "displayName": "敬礼 / Salute",
+      "note": "Platform jumping slot intentionally displays a grounded salute, as requested."
     },
     "failed": {
       "row": 5,
@@ -127,5 +129,6 @@
     ],
     "directions": 16,
     "order": "clockwise from up"
-  }
+  },
+  "revision": "2026-10-29-idle-salute-gravity"
 }
